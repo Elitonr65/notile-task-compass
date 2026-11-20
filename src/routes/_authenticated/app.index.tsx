@@ -13,7 +13,7 @@ import { useTasks } from "@/hooks/use-tasks";
 import { PRIORITIES, PRIORITY_LABEL, computeStats, isOverdue, sortTasks, todayISO } from "@/lib/tasks";
 import { cn } from "@/lib/utils";
 
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute("/_authenticated/app/")({
   head: () => ({
     meta: [
       { title: "Dashboard — NOTILE Task Manager" },
@@ -45,17 +45,17 @@ function StatCard({
     <div
       className={cn(
         "animate-rise rounded-2xl p-5 sm:p-6",
-        featured ? "bg-gradient-primary text-primary-foreground shadow-elevated" : "surface-card",
+        featured ? "bg-gradient-navy text-navy-foreground shadow-elevated" : "surface-card",
       )}
     >
       <div className="flex items-center justify-between">
-        <span className={cn("text-sm font-medium", featured ? "text-primary-foreground/80" : "text-muted-foreground")}>
+        <span className={cn("text-sm font-medium", featured ? "text-navy-foreground/80" : "text-muted-foreground")}>
           {label}
         </span>
         <span
           className={cn(
             "grid size-9 place-items-center rounded-lg",
-            featured && "bg-primary-foreground/15",
+            featured && "bg-navy-foreground/15",
             tone === "warning" && "bg-warning-soft text-warning-foreground",
             tone === "success" && "bg-success-soft text-success",
           )}
@@ -68,7 +68,7 @@ function StatCard({
       ) : (
         <div className="mt-4 font-display text-4xl font-bold tracking-tight">{value}</div>
       )}
-      <p className={cn("mt-1 text-xs", featured ? "text-primary-foreground/70" : "text-muted-foreground")}>
+      <p className={cn("mt-1 text-xs", featured ? "text-navy-foreground/70" : "text-muted-foreground")}>
         {hint}
       </p>
     </div>
@@ -91,7 +91,7 @@ function Dashboard() {
         description="Acompanhe o andamento das suas tarefas pessoais."
         action={
           <Button asChild size="lg" className="px-5 shadow-elevated">
-            <Link to="/nova-tarefa">
+            <Link to="/app/tarefas/nova">
               <Plus /> Nova tarefa
             </Link>
           </Button>
@@ -115,7 +115,7 @@ function Dashboard() {
           <div className="mb-4 flex items-center justify-between">
             <h2 className="text-lg font-semibold">Próximas tarefas</h2>
             <Link
-              to="/tarefas"
+              to="/app/tarefas"
               className="inline-flex items-center gap-1 text-sm font-semibold text-primary-glow hover:text-primary"
             >
               Ver todas <ArrowRight className="size-4" />

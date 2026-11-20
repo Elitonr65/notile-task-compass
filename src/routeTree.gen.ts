@@ -9,86 +9,146 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
-import { Route as NovaTarefaRouteImport } from './routes/nova-tarefa'
-import { Route as TarefasRouteImport } from './routes/tarefas'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as AuthenticatedAppRouteImport } from './routes/_authenticated/app'
+import { Route as AuthenticatedAppIndexRouteImport } from './routes/_authenticated/app.index'
+import { Route as AuthenticatedAppTarefasIndexRouteImport } from './routes/_authenticated/app.tarefas.index'
+import { Route as AuthenticatedAppTarefasNovaRouteImport } from './routes/_authenticated/app.tarefas.nova'
 
-const IndexRoute = IndexRouteImport.update({
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedAppRoute = AuthenticatedAppRouteImport.update({
+  id: '/app',
+  path: '/app',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedAppIndexRoute = AuthenticatedAppIndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthenticatedAppRoute,
 } as any)
-const NovaTarefaRoute = NovaTarefaRouteImport.update({
-  id: '/nova-tarefa',
-  path: '/nova-tarefa',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const TarefasRoute = TarefasRouteImport.update({
-  id: '/tarefas',
-  path: '/tarefas',
-  getParentRoute: () => rootRouteImport,
-} as any)
+const AuthenticatedAppTarefasIndexRoute =
+  AuthenticatedAppTarefasIndexRouteImport.update({
+    id: '/tarefas/',
+    path: '/tarefas/',
+    getParentRoute: () => AuthenticatedAppRoute,
+  } as any)
+const AuthenticatedAppTarefasNovaRoute =
+  AuthenticatedAppTarefasNovaRouteImport.update({
+    id: '/tarefas/nova',
+    path: '/tarefas/nova',
+    getParentRoute: () => AuthenticatedAppRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/nova-tarefa': typeof NovaTarefaRoute
-  '/tarefas': typeof TarefasRoute
+  '/': typeof AuthenticatedRouteRouteWithChildren
+  '/app': typeof AuthenticatedAppRouteWithChildren
+  '/app/': typeof AuthenticatedAppIndexRoute
+  '/app/tarefas/nova': typeof AuthenticatedAppTarefasNovaRoute
+  '/app/tarefas/': typeof AuthenticatedAppTarefasIndexRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/nova-tarefa': typeof NovaTarefaRoute
-  '/tarefas': typeof TarefasRoute
+  '/': typeof AuthenticatedRouteRouteWithChildren
+  '/app': typeof AuthenticatedAppIndexRoute
+  '/app/tarefas/nova': typeof AuthenticatedAppTarefasNovaRoute
+  '/app/tarefas': typeof AuthenticatedAppTarefasIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
-  '/nova-tarefa': typeof NovaTarefaRoute
-  '/tarefas': typeof TarefasRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/_authenticated/app': typeof AuthenticatedAppRouteWithChildren
+  '/_authenticated/app/': typeof AuthenticatedAppIndexRoute
+  '/_authenticated/app/tarefas/nova': typeof AuthenticatedAppTarefasNovaRoute
+  '/_authenticated/app/tarefas/': typeof AuthenticatedAppTarefasIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/nova-tarefa' | '/tarefas'
+  fullPaths: '/' | '/app' | '/app/' | '/app/tarefas/nova' | '/app/tarefas/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/nova-tarefa' | '/tarefas'
-  id: '__root__' | '/' | '/nova-tarefa' | '/tarefas'
+  to: '/' | '/app' | '/app/tarefas/nova' | '/app/tarefas'
+  id:
+    | '__root__'
+    | '/_authenticated'
+    | '/_authenticated/app'
+    | '/_authenticated/app/'
+    | '/_authenticated/app/tarefas/nova'
+    | '/_authenticated/app/tarefas/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  NovaTarefaRoute: typeof NovaTarefaRoute
-  TarefasRoute: typeof TarefasRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
       fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/nova-tarefa': {
-      id: '/nova-tarefa'
-      path: '/nova-tarefa'
-      fullPath: '/nova-tarefa'
-      preLoaderRoute: typeof NovaTarefaRouteImport
-      parentRoute: typeof rootRouteImport
+    '/_authenticated/app': {
+      id: '/_authenticated/app'
+      path: '/app'
+      fullPath: '/app'
+      preLoaderRoute: typeof AuthenticatedAppRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/tarefas': {
-      id: '/tarefas'
+    '/_authenticated/app/': {
+      id: '/_authenticated/app/'
+      path: '/'
+      fullPath: '/app/'
+      preLoaderRoute: typeof AuthenticatedAppIndexRouteImport
+      parentRoute: typeof AuthenticatedAppRoute
+    }
+    '/_authenticated/app/tarefas/': {
+      id: '/_authenticated/app/tarefas/'
       path: '/tarefas'
-      fullPath: '/tarefas'
-      preLoaderRoute: typeof TarefasRouteImport
-      parentRoute: typeof rootRouteImport
+      fullPath: '/app/tarefas/'
+      preLoaderRoute: typeof AuthenticatedAppTarefasIndexRouteImport
+      parentRoute: typeof AuthenticatedAppRoute
+    }
+    '/_authenticated/app/tarefas/nova': {
+      id: '/_authenticated/app/tarefas/nova'
+      path: '/tarefas/nova'
+      fullPath: '/app/tarefas/nova'
+      preLoaderRoute: typeof AuthenticatedAppTarefasNovaRouteImport
+      parentRoute: typeof AuthenticatedAppRoute
     }
   }
 }
 
+interface AuthenticatedAppRouteChildren {
+  AuthenticatedAppIndexRoute: typeof AuthenticatedAppIndexRoute
+  AuthenticatedAppTarefasNovaRoute: typeof AuthenticatedAppTarefasNovaRoute
+  AuthenticatedAppTarefasIndexRoute: typeof AuthenticatedAppTarefasIndexRoute
+}
+
+const AuthenticatedAppRouteChildren: AuthenticatedAppRouteChildren = {
+  AuthenticatedAppIndexRoute: AuthenticatedAppIndexRoute,
+  AuthenticatedAppTarefasNovaRoute: AuthenticatedAppTarefasNovaRoute,
+  AuthenticatedAppTarefasIndexRoute: AuthenticatedAppTarefasIndexRoute,
+}
+
+const AuthenticatedAppRouteWithChildren =
+  AuthenticatedAppRoute._addFileChildren(AuthenticatedAppRouteChildren)
+
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAppRoute: typeof AuthenticatedAppRouteWithChildren
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAppRoute: AuthenticatedAppRouteWithChildren,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
-  NovaTarefaRoute: NovaTarefaRoute,
-  TarefasRoute: TarefasRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

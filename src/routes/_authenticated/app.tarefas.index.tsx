@@ -10,7 +10,7 @@ import { useTasks } from "@/hooks/use-tasks";
 import { computeStats, filterTasks, sortTasks, type TaskFilter } from "@/lib/tasks";
 import { cn } from "@/lib/utils";
 
-export const Route = createFileRoute("/tarefas")({
+export const Route = createFileRoute("/_authenticated/app/tarefas/")({
   head: () => ({
     meta: [
       { title: "Minhas tarefas — NOTILE Task Manager" },
@@ -50,7 +50,7 @@ function TasksPage() {
         description="Marque o que já foi feito e mantenha sua lista sempre organizada."
         action={
           <Button asChild size="lg" className="px-5">
-            <Link to="/nova-tarefa">
+            <Link to="/app/tarefas/nova">
               <Plus /> Nova tarefa
             </Link>
           </Button>

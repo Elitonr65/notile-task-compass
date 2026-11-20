@@ -13,7 +13,7 @@ import { useTasks } from "@/hooks/use-tasks";
 import { PRIORITIES, PRIORITY_LABEL, type Priority } from "@/lib/tasks";
 import { cn } from "@/lib/utils";
 
-export const Route = createFileRoute("/nova-tarefa")({
+export const Route = createFileRoute("/_authenticated/app/tarefas/nova")({
   head: () => ({
     meta: [
       { title: "Nova tarefa — NOTILE Task Manager" },
@@ -73,7 +73,7 @@ function NewTaskPage() {
       setPriority("media");
       setErrors({});
     } else {
-      navigate({ to: "/tarefas" });
+      navigate({ to: "/app/tarefas" });
     }
   };
 
@@ -173,7 +173,7 @@ function NewTaskPage() {
           </label>
 
           <div className="flex flex-col-reverse gap-3 border-t border-border pt-6 sm:flex-row sm:justify-end">
-            <Button type="button" variant="outline" size="lg" onClick={() => navigate({ to: "/tarefas" })}>
+            <Button type="button" variant="outline" size="lg" onClick={() => navigate({ to: "/app/tarefas" })}>
               Cancelar
             </Button>
             <Button type="submit" size="lg" className="px-6">

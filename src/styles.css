@@ -30,6 +30,11 @@
   --color-primary-foreground: var(--primary-foreground);
   --color-primary-soft: var(--primary-soft);
   --color-primary-glow: var(--primary-glow);
+  --color-navy: var(--navy);
+  --color-navy-foreground: var(--navy-foreground);
+  --color-navy-soft: var(--navy-soft);
+  --color-cream: var(--cream);
+  --color-cream-foreground: var(--cream-foreground);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
@@ -67,53 +72,60 @@
   --shadow-elevated: var(--shadow-elevated);
 }
 
+/* NOTILE official palette: navy #101B2D, burgundy #4A010E, cream #FEF2E0, white, gray #64748B. */
 :root {
   --radius: 0.75rem;
-  --background: oklch(0.982 0.004 255);
-  --foreground: oklch(0.22 0.045 262);
+  --navy: oklch(0.222 0.039 259.9);
+  --navy-foreground: oklch(0.966 0.027 78.2);
+  --navy-soft: oklch(0.29 0.045 260);
+  --cream: oklch(0.966 0.027 78.2);
+  --cream-foreground: oklch(0.222 0.039 259.9);
+  --background: oklch(0.982 0.012 80);
+  --foreground: oklch(0.222 0.039 259.9);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.22 0.045 262);
+  --card-foreground: oklch(0.222 0.039 259.9);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.22 0.045 262);
-  --primary: oklch(0.29 0.09 262);
-  --primary-foreground: oklch(0.985 0.004 255);
-  --primary-glow: oklch(0.45 0.14 258);
-  --primary-soft: oklch(0.94 0.025 258);
-  --secondary: oklch(0.955 0.01 258);
-  --secondary-foreground: oklch(0.29 0.09 262);
-  --muted: oklch(0.955 0.008 258);
-  --muted-foreground: oklch(0.52 0.03 260);
-  --accent: oklch(0.94 0.025 258);
-  --accent-foreground: oklch(0.29 0.09 262);
-  --destructive: oklch(0.58 0.2 25);
+  --popover-foreground: oklch(0.222 0.039 259.9);
+  --primary: oklch(0.26 0.103 19.4);
+  --primary-foreground: oklch(0.985 0.012 80);
+  --primary-glow: oklch(0.38 0.13 20);
+  --primary-soft: oklch(0.95 0.022 25);
+  --secondary: oklch(0.955 0.02 78);
+  --secondary-foreground: oklch(0.222 0.039 259.9);
+  --muted: oklch(0.955 0.016 78);
+  --muted-foreground: oklch(0.554 0.041 257.4);
+  --accent: oklch(0.966 0.027 78.2);
+  --accent-foreground: oklch(0.222 0.039 259.9);
+  --destructive: oklch(0.55 0.2 27);
   --destructive-foreground: oklch(0.985 0.004 255);
   --destructive-soft: oklch(0.95 0.03 25);
-  --success: oklch(0.56 0.13 160);
+  --success: oklch(0.53 0.12 158);
   --success-foreground: oklch(0.985 0.004 255);
   --success-soft: oklch(0.95 0.035 160);
   --warning: oklch(0.66 0.15 65);
-  --warning-foreground: oklch(0.25 0.05 60);
+  --warning-foreground: oklch(0.3 0.06 60);
   --warning-soft: oklch(0.96 0.045 80);
-  --border: oklch(0.91 0.012 258);
-  --input: oklch(0.89 0.014 258);
-  --ring: oklch(0.45 0.14 258);
-  --chart-1: oklch(0.29 0.09 262);
-  --chart-2: oklch(0.56 0.13 160);
-  --chart-3: oklch(0.66 0.15 65);
-  --chart-4: oklch(0.58 0.2 25);
-  --chart-5: oklch(0.45 0.14 258);
-  --sidebar: oklch(0.24 0.075 263);
-  --sidebar-foreground: oklch(0.93 0.015 258);
-  --sidebar-muted: oklch(0.7 0.04 258);
-  --sidebar-primary: oklch(0.985 0.004 255);
-  --sidebar-primary-foreground: oklch(0.24 0.075 263);
-  --sidebar-accent: oklch(0.31 0.085 262);
-  --sidebar-accent-foreground: oklch(0.985 0.004 255);
-  --sidebar-border: oklch(0.33 0.07 262);
-  --sidebar-ring: oklch(0.6 0.12 258);
-  --gradient-primary: linear-gradient(135deg, var(--primary), var(--primary-glow));
-  --shadow-card: 0 1px 2px oklch(0.29 0.09 262 / 0.04), 0 4px 16px -6px oklch(0.29 0.09 262 / 0.08);
-  --shadow-elevated: 0 12px 32px -12px oklch(0.29 0.09 262 / 0.35);
+  --border: oklch(0.91 0.018 75);
+  --input: oklch(0.88 0.02 75);
+  --ring: oklch(0.38 0.13 20);
+  --chart-1: oklch(0.222 0.039 259.9);
+  --chart-2: oklch(0.26 0.103 19.4);
+  --chart-3: oklch(0.53 0.12 158);
+  --chart-4: oklch(0.66 0.15 65);
+  --chart-5: oklch(0.554 0.041 257.4);
+  --sidebar: oklch(0.222 0.039 259.9);
+  --sidebar-foreground: oklch(0.95 0.02 80);
+  --sidebar-muted: oklch(0.72 0.03 258);
+  --sidebar-primary: oklch(0.966 0.027 78.2);
+  --sidebar-primary-foreground: oklch(0.222 0.039 259.9);
+  --sidebar-accent: oklch(0.29 0.045 260);
+  --sidebar-accent-foreground: oklch(0.985 0.012 80);
+  --sidebar-border: oklch(0.32 0.04 260);
+  --sidebar-ring: oklch(0.38 0.13 20);
+  --gradient-primary: linear-gradient(135deg, oklch(0.26 0.103 19.4), oklch(0.36 0.12 18));
+  --gradient-navy: linear-gradient(145deg, oklch(0.222 0.039 259.9), oklch(0.3 0.05 258));
+  --shadow-card: 0 1px 2px oklch(0.222 0.039 259.9 / 0.04), 0 6px 18px -8px oklch(0.222 0.039 259.9 / 0.1);
+  --shadow-elevated: 0 14px 34px -14px oklch(0.222 0.039 259.9 / 0.4);
 }
 
 @layer base {
@@ -143,6 +155,10 @@
   background-image: var(--gradient-primary);
 }
 
+@utility bg-gradient-navy {
+  background-image: var(--gradient-navy);
+}
+
 @utility surface-card {
   background-color: var(--color-card);
   border: 1px solid var(--color-border);
@@ -162,5 +178,31 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@utility animate-breathe {
+  animation: breathe 1.6s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(0.94);
+    opacity: 0.75;
+  }
+}
+
+/* Google sign-in button: colors fixed by Google's branding guidelines (light theme). */
+@utility google-btn {
+  background-color: #ffffff;
+  color: #1f1f1f;
+  border: 1px solid #747775;
+  &:hover {
+    background-color: #f8f9fa;
   }
 }

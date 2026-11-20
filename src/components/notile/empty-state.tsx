@@ -12,7 +12,7 @@ export function EmptyState({ title, description, showAction = true }: { title: s
       <p className="mt-1 max-w-sm text-sm text-muted-foreground">{description}</p>
       {showAction && (
         <Button asChild className="mt-5">
-          <Link to="/nova-tarefa">
+          <Link to="/app/tarefas/nova">
             <Plus /> Nova tarefa
           </Link>
         </Button>
