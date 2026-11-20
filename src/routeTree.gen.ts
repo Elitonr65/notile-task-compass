@@ -10,33 +10,53 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as NovaTarefaRouteImport } from './routes/nova-tarefa'
+import { Route as TarefasRouteImport } from './routes/tarefas'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const NovaTarefaRoute = NovaTarefaRouteImport.update({
+  id: '/nova-tarefa',
+  path: '/nova-tarefa',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TarefasRoute = TarefasRouteImport.update({
+  id: '/tarefas',
+  path: '/tarefas',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/nova-tarefa': typeof NovaTarefaRoute
+  '/tarefas': typeof TarefasRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/nova-tarefa': typeof NovaTarefaRoute
+  '/tarefas': typeof TarefasRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/nova-tarefa': typeof NovaTarefaRoute
+  '/tarefas': typeof TarefasRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/nova-tarefa' | '/tarefas'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/nova-tarefa' | '/tarefas'
+  id: '__root__' | '/' | '/nova-tarefa' | '/tarefas'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  NovaTarefaRoute: typeof NovaTarefaRoute
+  TarefasRoute: typeof TarefasRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +68,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/nova-tarefa': {
+      id: '/nova-tarefa'
+      path: '/nova-tarefa'
+      fullPath: '/nova-tarefa'
+      preLoaderRoute: typeof NovaTarefaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tarefas': {
+      id: '/tarefas'
+      path: '/tarefas'
+      fullPath: '/tarefas'
+      preLoaderRoute: typeof TarefasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  NovaTarefaRoute: NovaTarefaRoute,
+  TarefasRoute: TarefasRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -28,3 +28,9 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Project rules
+
+- Tasks persist in browser localStorage via `TasksProvider` (`src/hooks/use-tasks.tsx`), loaded in `useEffect` to avoid SSR hydration mismatches; there is no backend yet.
+- Task business rules (filters, stats, sorting, overdue) live as pure functions in `src/lib/tasks.ts` with tests in `src/lib/tasks.test.ts`, so UI stays thin and rules stay testable.
+- The app shell (sidebar on desktop, sheet menu on mobile) wraps `<Outlet />` in `src/routes/__root.tsx`; each section is its own route file.
